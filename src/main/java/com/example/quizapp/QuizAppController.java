@@ -19,7 +19,7 @@ public class QuizAppController {
 
     @PostMapping("/create")
     public void create(@RequestParam String question, @RequestParam boolean answer){
-        String quiz = question + ":" + answer;
-        quizzes.add(quiz);
+        String quiz = question + ":" + answer; // 問題と答えを連結
+        quizzes.add(quiz); // クイズの追加
     }
 }
