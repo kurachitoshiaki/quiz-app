@@ -29,7 +29,11 @@ public class QuizAppController {
         // 回答の可否をチェックする
         for (Quiz quiz: quizzes){
             if (quiz.getQuestion().equals(question)){
-                return "見つかった!" + quiz.getQuestion();
+                if (quiz.isAnswer() == answer){
+                    return "正解!";
+                } else {
+                    return "不正解!";
+                }
             }
         }
         return  "問題がありません";
