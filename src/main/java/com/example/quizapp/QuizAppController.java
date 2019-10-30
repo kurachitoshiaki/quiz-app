@@ -24,8 +24,8 @@ public class QuizAppController {
     }
 
     // checkメソッド
-    public String check(String question, boolean answer){
+    @GetMapping("/check")
+    public String check(@RequestParam String question, boolean answer){
         // TODO: 回答の可否をチェックする
-
     }
 }
