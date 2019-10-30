@@ -22,4 +22,10 @@ public class QuizAppController {
         Quiz quiz = new Quiz(question, answer);
         quizzes.add(quiz); // クイズの追加
     }
+
+    // checkメソッド
+    public String check(String question, boolean answer){
+        // TODO: 回答の可否をチェックする
+
+    }
 }
