@@ -22,4 +22,20 @@ public class QuizAppController {
         Quiz quiz = new Quiz(question, answer);
         quizzes.add(quiz); // クイズの追加
     }
+
+    // checkメソッド
+    @GetMapping("/check")
+    public String check(@RequestParam String question, boolean answer){
+        // 回答の可否をチェックする
+        for (Quiz quiz: quizzes){
+            if (quiz.getQuestion().equals(question)){
+                if (quiz.isAnswer() == answer){
+                    return "正解!";
+                } else {
+                    return "不正解!";
+                }
+            }
+        }
+        return  "問題がありません";
+    }
 }

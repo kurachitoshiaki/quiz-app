@@ -24,4 +24,10 @@ public class Quiz {
     public boolean isAnswer(){
         return answer;
     }
+
+    @Override
+    public String toString(){
+        String marubatu = answer ? "○" : "×";
+        return question + " " + marubatu;
+    }
 }
