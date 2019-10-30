@@ -26,6 +26,12 @@ public class QuizAppController {
     // checkメソッド
     @GetMapping("/check")
     public String check(@RequestParam String question, boolean answer){
-        // TODO: 回答の可否をチェックする
+        // 回答の可否をチェックする
+        for (Quiz quiz: quizzes){
+            if (quiz.getQuestion().equals(question)){
+                return "見つかった!" + quiz.getQuestion();
+            }
+        }
+        return  "問題がありません";
     }
 }
