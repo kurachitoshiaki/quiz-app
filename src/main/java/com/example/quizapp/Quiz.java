@@ -30,4 +30,11 @@ public class Quiz {
         String marubatu = answer ? "○" : "×";
         return question + " " + marubatu;
     }
+
+    public static Quiz fromString(String line) {
+        String question = line.substring(0, line.length() - 2);
+        boolean answer = line.endsWith("○");
+
+        return new Quiz(question, answer);
+    }
 }
