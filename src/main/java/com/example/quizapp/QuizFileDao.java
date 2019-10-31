@@ -9,7 +9,7 @@ import java.util.List;
 
 public class QuizFileDao {
 
-    
+    // 再代入できない定数
     private static final String FILE_PATH = "quizzes.txt";
 
     public void write(List<Quiz> quizzes) throws IOException {
