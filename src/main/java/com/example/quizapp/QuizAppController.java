@@ -46,7 +46,7 @@ public class QuizAppController {
         try {
             quizFileDao.write(quizzes);
             return "ファイルに保存しました";
-        } catch (IOException e) {
+        } catch (IOException e) { //例外
             e.printStackTrace();
             return "ファイルの保存に失敗しました";
         }
