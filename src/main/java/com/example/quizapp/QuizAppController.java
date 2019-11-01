@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,13 +57,13 @@ public class QuizAppController {
     }
 
     @PostMapping("/save")
-    public String save(){
+    public String save(RedirectAttributes attributes){
         try {
             quizFileDao.write(quizzes);
-            return "ファイルに保存しました";
+            attributes.addFlashAttribute("successMessage", "ファイルを保存しました。");
         } catch (IOException e) { //例外
             e.printStackTrace();
-            return "ファイルの保存に失敗しました";
+            attributes.addFlashAttribute("errorMessage", "ファイルの保存に失敗しました。")
         }
     }
 
