@@ -8,11 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 public class QuizAppController {
     private List<Quiz> quizzes = new ArrayList<>();
     private QuizFileDao quizFileDao = new QuizFileDao();
+
+    @GetMapping("/quiz")
+    public Quiz quiz(){
+        int index = new Random().nextInt(quizzes.size()); // size 引数が3の場合 0~2 乱数
+
+        return quizzes.get(index);
+    }
 
     @GetMapping("/show")
     public List<Quiz> show() {
