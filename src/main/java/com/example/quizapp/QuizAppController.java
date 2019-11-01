@@ -57,7 +57,7 @@ public class QuizAppController {
         try {
             quizzes = quizFileDao.read();
             return "ファイルを読み込みました";
-        } catch (IOException e) {
+        } catch (IOException e) { // 例外
             e.printStackTrace();
             return "ファイルの読み込みに失敗しました";
         }
