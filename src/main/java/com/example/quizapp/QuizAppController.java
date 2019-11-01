@@ -20,10 +20,11 @@ public class QuizAppController {
     private QuizFileDao quizFileDao = new QuizFileDao();
 
     @GetMapping("/quiz")
-    public Quiz quiz(){
+    public String quiz(Model model){
         int index = new Random().nextInt(quizzes.size()); // size 引数が3の場合 0~2 乱数
 
-        return quizzes.get(index);
+        model.addAttribute("quiz", quizzes.get(index));
+        return "quiz";
     }
 
     @GetMapping("/show")
@@ -42,18 +43,18 @@ public class QuizAppController {
 
     // checkメソッド
     @GetMapping("/check")
-    public String check(@RequestParam String question, boolean answer){
+    public String check(Model model, @RequestParam String question, boolean answer){
         // 回答の可否をチェックする
         for (Quiz quiz: quizzes){
             if (quiz.getQuestion().equals(question)){
                 if (quiz.isAnswer() == answer){
-                    return "正解!";
+                    model.addAttribute("result", "正解!");
                 } else {
-                    return "不正解!";
+                    model.addAttribute("result", "不正解!");
                 }
             }
         }
-        return  "問題がありません";
+        return  "answer";
     }
 
     @PostMapping("/save")
@@ -73,10 +74,10 @@ public class QuizAppController {
     public String load(RedirectAttributes attributes){
         try {
             quizzes = quizFileDao.read();
-            attributes.addFlashAttribute("successMessage", "ファイルを保存しました。");
+            attributes.addFlashAttribute("successMessage", "ファイルを読み込みました。");
         } catch (IOException e) { // 例外
             e.printStackTrace();
-            attributes.addFlashAttribute("errorMessage", "ファイルの保存に失敗しました。");
+            attributes.addFlashAttribute("errorMessage", "ファイルの読み込みに失敗しました。");
         }
 
         return "redirect:/page/show";
