@@ -47,6 +47,7 @@ public class QuizAppController {
         // 回答の可否をチェックする
         for (Quiz quiz: quizzes){
             if (quiz.getQuestion().equals(question)){
+                model.addAttribute("quiz", quiz);
                 if (quiz.isAnswer() == answer){
                     model.addAttribute("result", "正解!");
                 } else {
