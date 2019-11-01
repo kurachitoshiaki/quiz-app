@@ -1,16 +1,19 @@
 package com.example.quizapp;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@RestController
+@Controller
+@RequestMapping("page")
 public class QuizAppController {
     private List<Quiz> quizzes = new ArrayList<>();
     private QuizFileDao quizFileDao = new QuizFileDao();
@@ -23,14 +26,17 @@ public class QuizAppController {
     }
 
     @GetMapping("/show")
-    public List<Quiz> show() {
-        return quizzes;
+    public String show(Model model) {
+        model.addAttribute("quizzes", quizzes);
+        return "List"; // HTMLファイルの呼び出し
     }
 
     @PostMapping("/create")
-    public void create(@RequestParam String question, @RequestParam boolean answer){
+    public String create(@RequestParam String question, @RequestParam boolean answer){
         Quiz quiz = new Quiz(question, answer);
         quizzes.add(quiz); // クイズの追加
+
+        return "redirect:/page/show";
     }
 
     // checkメソッド
