@@ -63,18 +63,22 @@ public class QuizAppController {
             attributes.addFlashAttribute("successMessage", "ファイルを保存しました。");
         } catch (IOException e) { //例外
             e.printStackTrace();
-            attributes.addFlashAttribute("errorMessage", "ファイルの保存に失敗しました。")
+            attributes.addFlashAttribute("errorMessage", "ファイルの保存に失敗しました。");
         }
+
+        return "redirect:/page/show";
     }
 
     @GetMapping("/load")
-    public String load(){
+    public String load(RedirectAttributes attributes){
         try {
             quizzes = quizFileDao.read();
-            return "ファイルを読み込みました";
+            attributes.addFlashAttribute("successMessage", "ファイルを保存しました。");
         } catch (IOException e) { // 例外
             e.printStackTrace();
-            return "ファイルの読み込みに失敗しました";
+            attributes.addFlashAttribute("errorMessage", "ファイルの保存に失敗しました。");
         }
+
+        return "redirect:/page/show";
     }
 }
