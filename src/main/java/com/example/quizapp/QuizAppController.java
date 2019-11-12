@@ -27,7 +27,7 @@ public class QuizAppController {
         return "quiz";
     }
 
-    @GetMapping("/show")
+    @GetMapping("/")
     public String show(Model model) {
         model.addAttribute("quizzes", quizzes);
         return "List"; // HTMLファイルの呼び出し
