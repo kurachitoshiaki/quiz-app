@@ -1,12 +1,8 @@
 HELP.md
 .gradle
 build/
-!gradle/wrapper/gradle-wrapper.jar
-<<<<<<< Updated upstream
-=======
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
->>>>>>> Stashed changes
 !**/src/main/**
 !**/src/test/**
 
