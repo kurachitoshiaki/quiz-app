@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("page")
 public class QuizAppController {
     private List<Quiz> quizzes = new ArrayList<>();
     private QuizFileDao quizFileDao = new QuizFileDao();
@@ -27,7 +27,7 @@ public class QuizAppController {
         return "quiz";
     }
 
-    @GetMapping("/")
+    @GetMapping("/show")
     public String show(Model model) {
         model.addAttribute("quizzes", quizzes);
         return "List"; // HTMLファイルの呼び出し
